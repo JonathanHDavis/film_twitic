@@ -7,6 +7,8 @@ class GenresController < ApplicationController
   end
 
   def show
+    @movie = Movie.new
+    @movies = @genre.movies.order(created_at: :desc)
   end
 
   def new

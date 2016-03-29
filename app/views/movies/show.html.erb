@@ -9,3 +9,30 @@
 </p>
 
 <td><%= link_to "edit", edit_movie_path(@movie) %></td>
+
+<h3>Add a Review</h3>
+<%= form_for @review do |f| %>
+  <p>
+   <%= f.label :title %><br/>
+   <%= f.text_field :title %>
+  </p>
+
+  <p>
+   <%= f.label :content %><br/>
+   <%= f.text_area :content %>
+  </p>
+
+  <%= f.hidden_field :movie_id, value: @movie.id %>
+
+  <%= f.submit %>
+
+<% end %>
+
+<h3>Reviews</h3>
+ 
+<% @reviews.each do |review| %>
+  <p>Title: <%= review.title %></p>
+  <p><%= review.content %></p>
+  <p><%= review.created_at %></p>
+  <hr/>
+<% end %>

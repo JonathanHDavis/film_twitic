@@ -7,6 +7,8 @@ class MoviesController < ApplicationController
   end
 
   def show
+    @review = Review.new
+    @reviews = @movie.reviews.order(created_at: :desc)
   end
 
   def new
@@ -15,13 +17,13 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(movie_params)
+    @genre = Genre.find(params[:movie][:genre_id])
 
     if @movie.save
-      flash[:notice] = "Movie was successfully created"
-      redirect_to movie_path(@movie)
+      redirect_to genre_path(@genre), notice: "Movie was successfully added"
     else
-      flash.now[:error] = "An error occurred while saving this movie"
-      render :new
+       flash.now[:error] = "An error occured while saving this movie"
+       render 'genres/show'
     end
   end
 
