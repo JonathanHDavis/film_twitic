@@ -1,0 +1,20 @@
+<%= form_for @movie do |f| %>
+
+  <% if @movie.errors.any? %>
+    <% @movie.errors.full_messages.each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  <% end %>
+
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :genre %><br>
+    <%= collection_select(:movie, :genre_id, Genre.all, :id, :name, include_blank: true) %>
+  </p>
+
+  <%= f.submit %>
+<% end %>

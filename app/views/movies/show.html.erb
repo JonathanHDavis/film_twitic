@@ -1,0 +1,11 @@
+<%= link_to "Back to Movie List", movies_path %>
+
+<p>
+  <strong>Movie Title:</strong> <%= @movie.title %>
+</p>
+
+<p>
+  <strong>Genre:</strong> <%= @movie.genre.try(:name) %>
+</p>
+
+<td><%= link_to "edit", edit_movie_path(@movie) %></td>
