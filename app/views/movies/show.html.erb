@@ -1,11 +1,20 @@
-<ul class="nav navbar-nav">
-  <li><%=link_to "LOGIN", user_session_path %></li>
-  <li><%= link_to('SIGN UP', new_user_registration_path)  %></li>
-  <li><%=link_to('LOGOUT', destroy_user_session_path, :method => :delete) %></li>
+<ul class="nav navbar-nav navbar-right">
+  <% if current_user %>
+    <li><span class="profile-email"><%= current_user.email %><span></li>
+    <li><%= link_to "sign out", destroy_user_session_path, method: :delete %></li>
+  <% else %>
+    <li> <%= link_to "register", new_user_registration_path %></li>
+    <li> <%= link_to "sign in", user_session_path %></li>
+  <% end %>
 </ul>
 
-<%= link_to "Back to Movie List", movies_path %>
-<%= link_to "Click Here for Genre List", genres_path %>
+
+<p><%= link_to "Back to Movie List", movies_path %></p>
+<p><%= link_to "Click Here for Genre List", genres_path %></p>
+
+<% if current_user %>
+  <p><%= link_to "Create New Movie", new_movie_path %></p>
+<% end %>
 
 <p>
   <strong>Movie Title:</strong> <%= @movie.title %>
@@ -15,9 +24,10 @@
   <strong>Genre:</strong> <%= @movie.genre.try(:name) %>
 </p>
 
+<% if current_user %>
+
 <td><%= link_to "edit", edit_movie_path(@movie) %></td>
 
-<% if current_user %>
   <h3>Add a Review</h3>
   <%= form_for @review do |f| %>
     <p>

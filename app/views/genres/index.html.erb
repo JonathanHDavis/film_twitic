@@ -1,9 +1,13 @@
 <h1>Genres</h1>
 
-<ul class="nav navbar-nav">
-  <li><%=link_to "LOGIN", user_session_path %></li>
-  <li><%= link_to('SIGN UP', new_user_registration_path)  %></li>
-  <li><%=link_to('LOGOUT', destroy_user_session_path, :method => :delete) %></li>
+<ul class="nav navbar-nav navbar-right">
+  <% if current_user %>
+    <li><span class="profile-email"><%= current_user.email %><span></li>
+    <li><%= link_to "sign out", destroy_user_session_path, method: :delete %></li>
+  <% else %>
+    <li> <%= link_to "register", new_user_registration_path %></li>
+    <li> <%= link_to "sign in", user_session_path %></li>
+  <% end %>
 </ul>
 
 <%= link_to "Home", root_path %>
