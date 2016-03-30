@@ -1,4 +1,11 @@
+<ul class="nav navbar-nav">
+  <li><%=link_to "LOGIN", user_session_path %></li>
+  <li><%= link_to('SIGN UP', new_user_registration_path)  %></li>
+  <li><%=link_to('LOGOUT', destroy_user_session_path, :method => :delete) %></li>
+</ul>
+
 <%= link_to "Back to Movie List", movies_path %>
+<%= link_to "Click Here for Genre List", genres_path %>
 
 <p>
   <strong>Movie Title:</strong> <%= @movie.title %>
@@ -10,22 +17,24 @@
 
 <td><%= link_to "edit", edit_movie_path(@movie) %></td>
 
-<h3>Add a Review</h3>
-<%= form_for @review do |f| %>
-  <p>
-   <%= f.label :title %><br/>
-   <%= f.text_field :title %>
-  </p>
+<% if current_user %>
+  <h3>Add a Review</h3>
+  <%= form_for @review do |f| %>
+    <p>
+     <%= f.label :title %><br/>
+     <%= f.text_field :title %>
+    </p>
 
-  <p>
-   <%= f.label :content %><br/>
-   <%= f.text_area :content %>
-  </p>
+    <p>
+     <%= f.label :content %><br/>
+     <%= f.text_area :content %>
+    </p>
 
-  <%= f.hidden_field :movie_id, value: @movie.id %>
+    <%= f.hidden_field :movie_id, value: @movie.id %>
 
-  <%= f.submit %>
+    <%= f.submit %>
 
+  <% end %>
 <% end %>
 
 <h3>Reviews</h3>

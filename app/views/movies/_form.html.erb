@@ -1,5 +1,11 @@
 <%= form_for @movie do |f| %>
 
+<ul class="nav navbar-nav">
+  <li><%=link_to "LOGIN", user_session_path %></li>
+  <li><%= link_to('SIGN UP', new_user_registration_path)  %></li>
+  <li><%=link_to('LOGOUT', destroy_user_session_path, :method => :delete) %></li>
+</ul>
+
   <% if @movie.errors.any? %>
     <% @movie.errors.full_messages.each do |message| %>
       <p><%= message %></p>

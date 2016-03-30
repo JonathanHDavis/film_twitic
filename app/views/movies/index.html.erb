@@ -1,22 +1,37 @@
 <h1>Movies</h1>
 
-<%= link_to "Create New Movie", new_movie_path %>
+<ul class="nav navbar-nav">
+  <li><%=link_to "LOGIN", user_session_path %></li>
+  <li><%= link_to('SIGN UP', new_user_registration_path)  %></li>
+  <li><%=link_to('LOGOUT', destroy_user_session_path, :method => :delete) %></li>
+</ul>
 
-<br />
-<br />
-<table>
-  <tr>
-    <th>Title</th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tbody>
-    <% @movies.each do |movie| %>
-      <tr>
-        <td><%= link_to(movie.title, movie_path(movie)) %></td>
-        <td><%= link_to "edit", edit_movie_path(movie) %></td>
-        <td><%= link_to "delete", movie_path(movie), method: :delete, data: {confirm: "Are you sure you want to delete this movie?"}%></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= link_to "Home", root_path %>
+
+<% if current_user %>
+  <%= link_to "Create New Movie", new_movie_path %>
+<% end %>
+<%= link_to "Click Here for Genre List", genres_path %>
+
+
+  <br />
+  <br />
+  <table>
+    <tr>
+      <th>Title</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tbody>
+      <% @movies.each do |movie| %>
+        <tr>
+          <td><%= link_to(movie.title, movie_path(movie)) %></td>
+
+          <% if current_user %>
+            <td><%= link_to "edit", edit_movie_path(movie) %></td>
+            <td><%= link_to "delete", movie_path(movie), method: :delete, data: {confirm: "Are you sure you want to delete this movie?"}%></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

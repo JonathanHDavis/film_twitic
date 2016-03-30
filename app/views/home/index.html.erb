@@ -1,0 +1,11 @@
+<h1>Film Twitic</h1>
+
+<ul class="nav navbar-nav">
+  <li><%=link_to "LOGIN", user_session_path %></li>
+  <li><%= link_to('SIGN UP', new_user_registration_path)  %></li>
+  <li><%=link_to('LOGOUT', destroy_user_session_path, :method => :delete) %></li>
+</ul>
+
+
+<p><%= link_to "View Movies", movies_path %></p>
+<p><%= link_to "View Genres", genres_path %></p>
