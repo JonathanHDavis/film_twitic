@@ -49,11 +49,15 @@
   <% end %>
 <% end %>
 
+<% if @review %>
+
 <h3>Reviews</h3>
  
-<% @reviews.each do |review| %>
-  <p>Title: <%= review.title %></p>
-  <p><%= review.content %></p>
-  <p><%= review.created_at %></p>
-  <hr/>
+  <% @reviews.each do |review| %>
+    <p>Title: <%= review.title %></p>
+    <p><%= review.content %></p>
+    <p><%= review.created_at %></p>
+    <hr/>
+  <% end %>
+
 <% end %>

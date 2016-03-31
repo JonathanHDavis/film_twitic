@@ -16,11 +16,19 @@
 <%= link_to "Click Here for Genre List", genres_path %>
 <%= link_to "Click Here for Movie List", movies_path %>
 
+<p>
+  <strong>Username:</strong> <%= @user.email %>
+</p>
+
 <h3>Reviews</h3>
  
-<% @reviews.each do |review| %>
-  <p>Title: <%= review.title %></p>
-  <p><%= review.content %></p>
-  <p><%= review.created_at %></p>
-  <hr/>
+<% if @reviews %>
+
+  <% @reviews.each do |review| %>
+    <p>Title: <%= review.title %></p>
+    <p><%= review.content %></p>
+    <p><%= review.created_at %></p>
+    <hr/>
+  <% end %>
+
 <% end %>
