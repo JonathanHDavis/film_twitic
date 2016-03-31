@@ -1,6 +1,8 @@
 class MoviesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
+  before_action :find_user, only: [:show, :edit, :update, :destroy]
+
 
   def index
     @movies = Movie.all
@@ -9,6 +11,7 @@ class MoviesController < ApplicationController
   def show
     @review = Review.new
     @reviews = @movie.reviews.order(created_at: :desc)
+    @reviewer = @user.id
   end
 
   def new
@@ -54,5 +57,9 @@ class MoviesController < ApplicationController
 
   def find_movie
     @movie = Movie.find(params[:id])
+  end
+
+  def find_user
+    @user = User.find(params[:id])
   end
 end

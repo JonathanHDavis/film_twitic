@@ -1,4 +1,7 @@
 class ReviewsController < ApplicationController
+  before_action :find_movie, only: [:show, :edit, :update, :destroy]
+  before_action :find_user, only: [:show, :edit, :update, :destroy]
+
   def create
     @review = Review.new(review_params)
     @movie = Movie.find(params[:review][:movie_id])
@@ -17,4 +20,13 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:title, :content, :movie_id, :user_id)
   end
+
+  def find_movie
+    @movie = Movie.find(params[:id])
+  end
+
+  def find_user
+    @reviewer = User.find(params[:id])
+  end
+
 end
