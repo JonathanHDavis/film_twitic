@@ -1,0 +1,26 @@
+<h1>Reviewer</h1>
+
+<ul class="nav navbar-nav navbar-right">
+  <% if current_user %>
+    <li><span class="profile-email"><%= current_user.email %><span></li>
+    <li><%= link_to "sign out", destroy_user_session_path, method: :delete %></li>
+  <% else %>
+    <li> <%= link_to "register", new_user_registration_path %></li>
+    <li> <%= link_to "sign in", user_session_path %></li>
+  <% end %>
+</ul>
+
+<%= link_to "Home", root_path %>
+
+<%= link_to "Click Here for Reviewers List", reviewers_path %>
+<%= link_to "Click Here for Genre List", genres_path %>
+<%= link_to "Click Here for Movie List", movies_path %>
+
+<h3>Reviews</h3>
+ 
+<% @reviews.each do |review| %>
+  <p>Title: <%= review.title %></p>
+  <p><%= review.content %></p>
+  <p><%= review.created_at %></p>
+  <hr/>
+<% end %>

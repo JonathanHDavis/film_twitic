@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :movies
   resources :genres
   resources :reviews, only: [:create]
+  resources :reviewers
 
   root "home#index"
 end
