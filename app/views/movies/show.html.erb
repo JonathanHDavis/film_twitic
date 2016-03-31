@@ -50,11 +50,12 @@
   <% end %>
 <% end %>
 
-<% if @reviews %>
+<% if @review %>
 
 <h3>Reviews</h3>
  
-  <% reviews.each do |review| %>
+  <% @reviews.each do |review| %>
+    <p>From: <%= review.user.email %></p>
     <p>Title: <%= review.title %></p>
     <p><%= review.content %></p>
     <p><%= review.created_at %></p>

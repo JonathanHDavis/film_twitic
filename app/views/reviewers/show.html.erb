@@ -22,10 +22,11 @@
 
 <h3>Reviews</h3>
  
-<% if @reviews %>
+<% if @review %>
 
-  <% @reviews.each do |review| %>
-    <p>Title: <%= review.title %></p>
+  <% @review.each do |review| %>
+    <p>Movie Title: <%= review.movie.title %>
+    <p>Review Title: <%= review.title %></p>
     <p><%= review.content %></p>
     <p><%= review.created_at %></p>
     <hr/>
