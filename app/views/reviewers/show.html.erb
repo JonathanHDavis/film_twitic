@@ -24,7 +24,7 @@
  
 <% if @review %>
 
-  <% @review.each do |review| %>
+  <% @reviews.each do |review| %>
     <p>Movie Title: <%= review.movie.title %>
     <p>Review Title: <%= review.title %></p>
     <p><%= review.content %></p>
