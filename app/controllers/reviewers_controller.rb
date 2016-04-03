@@ -8,7 +8,7 @@ class ReviewersController < ApplicationController
 
   def show
     @review = Review.new
-    @reviews = @user.reviews
+    @reviews = @user.reviews.order(created_at: :desc)
   end
 
   def find_user
